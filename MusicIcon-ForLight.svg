@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    id="svg1"
+    sodipodi:docname="_svgclean2.svg"
+    inkscape:export-ydpi="237.25999"
+    inkscape:export-filename="/root/img/quaver.png"
+    viewBox="0 0 51.528 93.117"
+    sodipodi:version="0.32"
+    inkscape:export-xdpi="237.25999"
+    version="1.1"
+    inkscape:version="0.48.3.1 r9886"
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      inkscape:window-y="0"
+      pagecolor="#a2a2a2"
+      snaptogrid="false"
+      inkscape:window-width="674"
+      inkscape:zoom="2.4559706"
+      inkscape:window-x="0"
+      showgrid="false"
+      borderopacity="1.0"
+      inkscape:current-layer="svg1"
+      inkscape:cx="135.91099"
+      inkscape:cy="-913.04279"
+      inkscape:window-height="645"
+      inkscape:window-maximized="0"
+      inkscape:pageopacity="0.0000000"
+      showguides="false"
+  />
+  <g
+      id="g54106"
+      transform="matrix(1.5445 0 0 1.5445 -344.24 -30.19)"
+    >
+    <path
+        id="path53483"
+        sodipodi:rx="11.706166"
+        sodipodi:ry="8.9068661"
+        style="stroke-opacity:0;fill:#000000"
+        sodipodi:type="arc"
+        d="m53.441 77.037c0 4.9191-5.241 8.9069-11.706 8.9069-6.4651 0-11.706-3.9877-11.706-8.9069 0-4.9191 5.241-8.9069 11.706-8.9069 6.4651 0 11.706 3.9877 11.706 8.9069z"
+        transform="matrix(.85178 0 0 1 197.3 -6.1076)"
+        sodipodi:cy="77.037384"
+        sodipodi:cx="41.735027"
+    />
+    <path
+        id="path54105"
+        inkscape:connector-curvature="0"
+        sodipodi:nodetypes="ccc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-width:2.5;stroke-linecap:round;fill:none"
+        d="m241.76 71.184c1.52-15.269 0.51-31.555-3.06-50.387 3.4 2.205 11.37 5.938 16.29 5.598"
+    />
+  </g
+  >
+  <metadata
+      id="metadata7"
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>
