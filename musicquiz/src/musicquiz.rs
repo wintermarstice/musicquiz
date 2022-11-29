@@ -93,8 +93,7 @@ fn render_track_card(number: usize, track: &TrackCardData, ui: &mut Ui) {
 
         ui.with_layout(Layout::top_down(Align::LEFT), |ui| {
             let number_text = RichText::new(number.to_string())
-                .font(FontId::proportional(32.0))
-                .color(Color32::WHITE);
+                .font(FontId::proportional(32.0));
 
             ui.label(number_text);
         });
