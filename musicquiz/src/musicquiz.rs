@@ -69,7 +69,12 @@ impl MusicQuiz {
                 ui.with_layout(Layout::right_to_left(Align::Min), |ui| {
                     let close_button = Label::new(make_icon("\u{e5cd}"));
                     let config_button = Label::new(make_icon("\u{e8b8}"));
-                    let theme_button = Label::new(make_icon("\u{e51c}"));
+
+                    // Switch symbols for theme button depending on the theme mode.
+                    let theme_button = Label::new(make_icon(match self.config.dark_mode {
+                        true => "\u{e1c6}", // Sunrise symbol
+                        false => "\u{e51c}", // Moon symbol
+                    }));
 
                     if ui.add(close_button.sense(Sense::click())).clicked() {
                         // Quit button clicked. Quit the app.
