@@ -1,11 +1,18 @@
 use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
 
 pub struct MusicQuiz {
-    tracks: Vec<TrackCardData>
+    tracks: Vec<TrackCardData>,
+    config: MusicQuizConfig,
 }
 
 pub struct MusicQuizConfig {
     dark_mode: bool,
+}
+
+impl Default for MusicQuizConfig {
+    fn default() -> Self {
+        Self { dark_mode: true }
+    }
 }
 
 impl MusicQuiz {
@@ -18,7 +25,7 @@ impl MusicQuiz {
 
         Self::configure_fonts(&cc.egui_ctx);
 
-        Self { tracks: Vec::from_iter(iter) }
+        Self { tracks: Vec::from_iter(iter), config: MusicQuizConfig::default() }
     }
 
     fn configure_fonts(ctx: &Context) {
