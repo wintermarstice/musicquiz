@@ -60,9 +60,9 @@ impl MusicQuiz {
 
                 // Controls
                 ui.with_layout(Layout::right_to_left(Align::Min), |ui| {
-                    let close_button = Button::new(make_icon("\u{e5cd}"));
-                    let config_button = Button::new(make_icon("\u{e8b8}"));
-                    let theme_button = Button::new(make_icon("\u{e51c}"));
+                    let close_button = Label::new(make_icon("\u{e5cd}"));
+                    let config_button = Label::new(make_icon("\u{e8b8}"));
+                    let theme_button = Label::new(make_icon("\u{e51c}"));
 
                     ui.add(close_button);
                     ui.add(config_button);
