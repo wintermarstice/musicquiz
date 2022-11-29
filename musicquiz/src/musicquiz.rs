@@ -17,7 +17,7 @@ impl Default for MusicQuizConfig {
 
 impl MusicQuiz {
     pub fn new(cc: &CreationContext<'_>) -> Self {
-        let iter = (0..10).map(|a| TrackCardData {
+        let iter = (0..30).map(|a| TrackCardData {
             album: format!("Album #{}", a),
             artist: format!("Artist {}", a),
             title: format!("Song Nr{}", a),
@@ -133,12 +133,12 @@ impl App for MusicQuiz {
         };
 
         self.render_top_panel(ctx, frame);
+        render_footer(ctx);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);
             ScrollArea::vertical().auto_shrink([false, true]).show(ui, |ui| {
                 self.render_track_cards(ui);
             });
-            render_footer(ctx);
         });
     }
 }
