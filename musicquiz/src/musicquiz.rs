@@ -1,4 +1,6 @@
-use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button, Sense, Visuals}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
+use std::path::Path;
+
+use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button, Sense, Visuals, Window}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
 use serde::{Serialize, Deserialize};
 
 /// Dark orange color
@@ -15,11 +17,19 @@ pub struct MusicQuiz {
 #[derive(Serialize, Deserialize)]
 pub struct MusicQuizConfig {
     dark_mode: bool,
+    music_sources: String,
 }
 
 impl Default for MusicQuizConfig {
     fn default() -> Self {
-        Self { dark_mode: true }
+        let get_music_dir = || {
+            directories::UserDirs::new()
+                .map(|ref dirs| dirs.audio_dir().unwrap_or(dirs.home_dir()).to_owned())
+                .map(|ref dir| dir.to_str().unwrap_or_default().to_owned())
+                .unwrap_or_default()
+        };
+
+        Self { dark_mode: true, music_sources: get_music_dir().to_string() }
     }
 }
 

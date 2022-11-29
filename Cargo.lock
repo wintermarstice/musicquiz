@@ -896,6 +896,7 @@ name = "musicquiz"
 version = "0.1.0"
 dependencies = [
  "confy",
+ "directories",
  "eframe",
  "serde",
  "tracing",
