@@ -48,7 +48,7 @@ impl MusicQuiz {
         }
     }
 
-    fn render_top_panel(&mut self, ctx: &Context) {
+    fn render_top_panel(&mut self, ctx: &Context, frame: &mut Frame) {
         let make_icon = |selector: &str| {
             RichText::new(selector).font(FontId::new(24.0, eframe::epaint::FontFamily::Name("MaterialSymbols".into())))
         };
@@ -71,7 +71,11 @@ impl MusicQuiz {
                     let config_button = Label::new(make_icon("\u{e8b8}"));
                     let theme_button = Label::new(make_icon("\u{e51c}"));
 
-                    ui.add(close_button);
+                    if ui.add(close_button.sense(Sense::click())).clicked() {
+                        // Quit button clicked. Quit the app.
+                        frame.close();
+                    }
+
                     ui.add(config_button);
 
                     if ui.add(theme_button.sense(Sense::click())).clicked() {
@@ -120,7 +124,7 @@ struct TrackCardData {
 
 impl App for MusicQuiz {
     fn update(&mut self, ctx: &Context, frame: &mut Frame) {
-        self.render_top_panel(ctx);
+        self.render_top_panel(ctx, frame);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);
             ScrollArea::vertical().auto_shrink([false, true]).show(ui, |ui| {
