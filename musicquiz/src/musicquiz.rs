@@ -1,7 +1,11 @@
-use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
+use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
 
 pub struct MusicQuiz {
     tracks: Vec<TrackCardData>
+}
+
+pub struct MusicQuizConfig {
+    dark_mode: bool,
 }
 
 impl MusicQuiz {
@@ -39,7 +43,7 @@ impl MusicQuiz {
 
     fn render_top_panel(&self, ctx: &Context) {
         let make_icon = |selector: &str| {
-            Label::new(RichText::new(selector).font(FontId::new(24.0, eframe::epaint::FontFamily::Name("MaterialSymbols".into()))))
+            RichText::new(selector).font(FontId::new(24.0, eframe::epaint::FontFamily::Name("MaterialSymbols".into())))
         };
 
         TopBottomPanel::top("top_panel").show(ctx, |ui| {
@@ -48,7 +52,7 @@ impl MusicQuiz {
             eframe::egui::menu::bar(ui, |ui| {
                 // The logo
                 ui.with_layout(Layout::left_to_right(Align::Min), |ui| {
-                    let logo_widget = make_icon("\u{e3a1}");
+                    let logo_widget = Label::new(make_icon("\u{e3a1}"));
 
                     ui.add(logo_widget);
                     ui.label("Music Quiz");
@@ -56,9 +60,9 @@ impl MusicQuiz {
 
                 // Controls
                 ui.with_layout(Layout::right_to_left(Align::Min), |ui| {
-                    let close_button = make_icon("\u{e5cd}");
-                    let config_button = make_icon("\u{e8b8}");
-                    let theme_button = make_icon("\u{e51c}");
+                    let close_button = Button::new(make_icon("\u{e5cd}"));
+                    let config_button = Button::new(make_icon("\u{e8b8}"));
+                    let theme_button = Button::new(make_icon("\u{e51c}"));
 
                     ui.add(close_button);
                     ui.add(config_button);
