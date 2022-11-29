@@ -1,5 +1,11 @@
 use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button, Sense, Visuals}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
 
+/// Dark orange color
+const COLOR_DKORANGE: Color32 = Color32::from_rgb(252, 78, 3);
+
+/// Orange color
+const COLOR_ORANGE: Color32 = Color32::from_rgb(252, 152, 3);
+
 pub struct MusicQuiz {
     tracks: Vec<TrackCardData>,
     config: MusicQuizConfig,
