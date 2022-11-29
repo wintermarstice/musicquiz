@@ -1,4 +1,5 @@
 use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button, Sense, Visuals}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
+use serde::{Serialize, Deserialize};
 
 /// Dark orange color
 const COLOR_DKORANGE: Color32 = Color32::from_rgb(252, 78, 3);
@@ -11,6 +12,7 @@ pub struct MusicQuiz {
     config: MusicQuizConfig,
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct MusicQuizConfig {
     dark_mode: bool,
 }
@@ -31,7 +33,9 @@ impl MusicQuiz {
 
         Self::configure_fonts(&cc.egui_ctx);
 
-        Self { tracks: Vec::from_iter(iter), config: MusicQuizConfig::default() }
+        let config: MusicQuizConfig = confy::load("MusicQuiz", None).unwrap_or_default();
+
+        Self { tracks: Vec::from_iter(iter), config }
     }
 
     fn configure_fonts(ctx: &Context) {
@@ -146,18 +150,30 @@ impl App for MusicQuiz {
         };
 
         self.render_top_panel(ctx, frame);
-        render_footer(ctx);
+        render_footer(&self.config, ctx);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);
+            
             ScrollArea::vertical().auto_shrink([false, true]).show(ui, |ui| {
                 self.render_track_cards(ui);
             });
         });
     }
+
+    fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
+        // Save config file on exit
+        confy::store("MusicQuiz", None, &self.config).expect("Failed to save configuration");
+    }
 }
 
-fn render_footer(ctx: &Context) {
+fn render_footer(config: &MusicQuizConfig, ctx: &Context) {
     TopBottomPanel::bottom("footer").show(ctx, |ui| {
+        // Set hyperlink colors
+        ui.style_mut().visuals.hyperlink_color = match &config.dark_mode {
+            true => COLOR_DKORANGE,
+            false => COLOR_ORANGE,
+        };
+
         ui.vertical_centered(|ui| {
             let made_with_egui_link = Hyperlink::from_label_and_url(
                 RichText::new("made with egui").monospace(), 

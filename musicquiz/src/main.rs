@@ -10,4 +10,5 @@ fn main() {
     native_options.initial_window_size = Some(Vec2::new(540.0, 960.0));
 
     run_native(app_name, native_options, Box::new(|cc| Box::new(MusicQuiz::new(cc))));
+    
 }
