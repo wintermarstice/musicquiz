@@ -20,10 +20,14 @@ impl MusicQuiz {
     fn configure_fonts(ctx: &Context) {
         let mut font_definitions = FontDefinitions::default();
         let font_name = "Questrial".to_string();
+        let matsym_font_name = "MaterialSymbols".to_string();
         let font_data = FontData::from_static(include_bytes!("../../Questrial-Regular.ttf"));
+        let matsym_font_data = FontData::from_static(include_bytes!("../../MaterialIcons-Regular.ttf"));
 
         font_definitions.font_data.insert(font_name.clone(), font_data);
+        font_definitions.font_data.insert(matsym_font_name.clone(), matsym_font_data);
         font_definitions.families.insert(eframe::epaint::FontFamily::Proportional, vec![font_name.clone()]);
+        font_definitions.families.insert(eframe::epaint::FontFamily::Name(matsym_font_name.clone().into()), vec![matsym_font_name.clone(), font_name.clone()]);
         ctx.set_fonts(font_definitions);
     }
 
@@ -31,6 +35,37 @@ impl MusicQuiz {
         for (id, track) in self.tracks.iter().enumerate() {
             render_track_card(id, track, ui);
         }
+    }
+
+    fn render_top_panel(&self, ctx: &Context) {
+        let make_icon = |selector: &str| {
+            Label::new(RichText::new(selector).font(FontId::new(24.0, eframe::epaint::FontFamily::Name("MaterialSymbols".into()))))
+        };
+
+        TopBottomPanel::top("top_panel").show(ctx, |ui| {
+            ui.add_space(10.0);
+
+            eframe::egui::menu::bar(ui, |ui| {
+                // The logo
+                ui.with_layout(Layout::left_to_right(Align::Min), |ui| {
+                    let logo_widget = make_icon("\u{e3a1}");
+
+                    ui.add(logo_widget);
+                    ui.label("Music Quiz");
+                });
+
+                // Controls
+                ui.with_layout(Layout::right_to_left(Align::Min), |ui| {
+                    let close_button = make_icon("\u{e5cd}");
+                    let config_button = make_icon("\u{e8b8}");
+                    let theme_button = make_icon("\u{e51c}");
+
+                    ui.add(close_button);
+                    ui.add(config_button);
+                    ui.add(theme_button);
+                })
+            });
+        });
     }
 }
 
@@ -67,6 +102,7 @@ struct TrackCardData {
 
 impl App for MusicQuiz {
     fn update(&mut self, ctx: &Context, frame: &mut Frame) {
+        self.render_top_panel(ctx);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);
             ScrollArea::vertical().auto_shrink([false, true]).show(ui, |ui| {
