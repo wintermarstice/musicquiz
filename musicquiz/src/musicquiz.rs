@@ -81,10 +81,7 @@ impl MusicQuiz {
                     if ui.add(theme_button.sense(Sense::click())).clicked() {
                         // Theme switching button clicked. Switch the theme
                         self.config.dark_mode = !self.config.dark_mode;
-                        match self.config.dark_mode {
-                            true => ctx.set_visuals(Visuals::dark()),
-                            false => ctx.set_visuals(Visuals::light()),
-                        };
+                        
                     }
                 })
             });
@@ -124,6 +121,12 @@ struct TrackCardData {
 
 impl App for MusicQuiz {
     fn update(&mut self, ctx: &Context, frame: &mut Frame) {
+        // Do updates here.
+        match self.config.dark_mode {
+            true => ctx.set_visuals(Visuals::dark()),
+            false => ctx.set_visuals(Visuals::light()),
+        };
+
         self.render_top_panel(ctx, frame);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);
