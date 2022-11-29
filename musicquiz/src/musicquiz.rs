@@ -44,7 +44,7 @@ impl MusicQuiz {
 
     fn render_track_cards(&mut self, ui: &mut Ui) {
         for (id, track) in self.tracks.iter().enumerate() {
-            render_track_card(id, track, ui);
+            render_track_card(&self.config, id, track, ui);
         }
     }
 
@@ -94,12 +94,19 @@ impl MusicQuiz {
     }
 }
 
-fn render_track_card(number: usize, track: &TrackCardData, ui: &mut Ui) {
+fn render_track_card(config: &MusicQuizConfig, number: usize, track: &TrackCardData, ui: &mut Ui) {
     ui.with_layout(Layout::left_to_right(Align::TOP), |ui| {
 
         ui.with_layout(Layout::top_down(Align::LEFT), |ui| {
+            // Change numeral color based on the theme
+            let number_color = match config.dark_mode {
+                true => Color32::WHITE,
+                false => Color32::BLACK,
+            };
+
             let number_text = RichText::new(number.to_string())
-                .font(FontId::proportional(32.0));
+                .font(FontId::proportional(32.0))
+                .color(number_color);
 
             ui.label(number_text);
         });
