@@ -48,7 +48,7 @@ impl MusicQuiz {
         }
     }
 
-    fn render_top_panel(&self, ctx: &Context) {
+    fn render_top_panel(&mut self, ctx: &Context) {
         let make_icon = |selector: &str| {
             RichText::new(selector).font(FontId::new(24.0, eframe::epaint::FontFamily::Name("MaterialSymbols".into())))
         };
