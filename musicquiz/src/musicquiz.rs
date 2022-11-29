@@ -86,12 +86,15 @@ fn render_footer(ctx: &Context) {
 
             let about_label = Label::new(RichText::new("a reincarnation of the iPod game of the same name").monospace());
 
-            
+            let repo_link = Hyperlink::from_label_and_url(
+                RichText::new("wintermarstice/musicquiz").monospace(),
+                "https://www.github.com/wintermarstice/musicquiz");
             
             ui.add_space(10.0);
 
             ui.add(about_label);
             ui.add(made_with_egui_link);
+            ui.add(repo_link);
 
             ui.add_space(10.0);
         });
