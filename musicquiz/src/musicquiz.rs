@@ -1,4 +1,4 @@
-use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
+use eframe::{egui::{Layout, Context, FontDefinitions, FontData, Ui, RichText, CentralPanel, ScrollArea, Separator, TopBottomPanel, Label, Hyperlink, Button, Sense, Visuals}, CreationContext, emath::Align, epaint::{FontId, Color32}, App, Frame};
 
 pub struct MusicQuiz {
     tracks: Vec<TrackCardData>,
@@ -73,7 +73,15 @@ impl MusicQuiz {
 
                     ui.add(close_button);
                     ui.add(config_button);
-                    ui.add(theme_button);
+
+                    if ui.add(theme_button.sense(Sense::click())).clicked() {
+                        // Theme switching button clicked. Switch the theme
+                        self.config.dark_mode = !self.config.dark_mode;
+                        match self.config.dark_mode {
+                            true => ctx.set_visuals(Visuals::dark()),
+                            false => ctx.set_visuals(Visuals::light()),
+                        };
+                    }
                 })
             });
         });
